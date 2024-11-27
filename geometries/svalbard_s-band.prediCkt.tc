@@ -1,0 +1,103 @@
+\begintext
+
+This is file svalbard_s-band.prediCkt
+ 
+The spacecraft clock Id and the spacecraft Id
+---------------------------------------------
+\begindata
+ 
+                CK-SCLK          = 1999
+                CK-SPK           = -1999
+
+\begintext
+
+Directions
+----------
+\begindata
+ 
+                DIRECTION_SPECS += ( 'SVALBARD_XBAND = -'
+                                     'POSITION OF NDOSL_SG3S -'
+                                     'FROM ASPERA CORRECTION NONE'
+                                   )
+
+                DIRECTION_SPECS += ( 'SUN = -'
+                                     'POSITION OF SUN -'
+                                     'FROM ASPERA CORRECTION NONE'
+                                   )
+\begintext
+
+Orientations
+------------
+S-BAND antenna boresight is S/C +X
+SOLAR panel boresight is S/C -Z
+\begindata
+ 
+                ORIENTATION_NAME += 'SVALBARD_XBAND_SLEW'
+                PRIMARY          += '+X = SVALBARD_XBAND'
+                SECONDARY        += '-Z = SUN'
+                BASE_FRAME       += 'J2000'
+
+\begintext
+
+Frames
+------
+\begindata
+
+                CK-FRAMES            += -1999000
+
+\begintext
+ 
+C-Kernels segments - [GOTO] orientation
+------------------
+\begindata
+
+                CK-1999000ORIENTATION += 'GOTO SVALBARD_XBAND_SLEW'
+                CK-1999000START       += @2025-06-01T10:42:00
+                CK-1999000STOP        += @2025-06-01T10:52:00
+
+\begintext
+
+Provenance - Kernels
+--------------------
+
+    ad4522201a72941b9a3652c06587b0e4  prediCkt.tm
+
+    ed17a5d2161e3f2a2096eb669e52f262  kernels/aspera/asp_v000.tf
+
+    25a2fff30b0dedb4d76c06727b1895b1  kernels/naif/naif0012.tls
+
+    91e21181f6a96edbfeb1ff5a419ce095  kernels/naif/de430.bsp
+    0d6942506ac59bbe773be1f08c8274ba  kernels/naif/earth_assoc_itrf93.tf
+    c1f742a999163af5e43c7d48d93e2efe  kernels/naif/earth_200101_990628_predict.bpc
+    d98c56962c0b8741eca1a168cd3414fd  kernels/naif/ndosl_190716_v02.tf
+    9efea57c2d4fd8a7f222c5713fc5266d  kernels/naif/ndosl_190716_v02.bsp
+    b5aa2a7cf85e9853eafacabfa0776cb0  kernels/aspera/aspera_sso_10am.bsp
+
+    d66d069bffc56cf5565307eeee527c75  kernels/aspera/aspera.00000.draft.tsc
+
+
+
+Provenance - Command (BASH)
+---------------------------
+
+    rm -f svalbard_s-band.bc                                \
+    &&                                                      \
+    prediCkt -furnish prediCkt.tm                           \
+             -spec    svalbard_s-band.prediCkt              \
+             -ck      svalbard_s-band.bc                    \
+             -tol     0.005                                 \
+             -sclk    kernels/aspera/aspera.00000.draft.tsc
+
+Sources
+-------
+
+    kernels/naif/ndosl_190716_v02.tf               https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/stations/ndosl_190716_v02.tf
+    kernels/naif/earth_assoc_itrf93.tf             https://naif.jpl.nasa.gov/pub/naif/generic_kernels/fk/planets/earth_assoc_itrf93.tf
+
+    kernels/naif/naif0012.tls                      https://naif.jpl.nasa.gov/pub/naif/generic_kernels/lsk/naif0012.tls
+
+    kernels/naif/earth_200101_990628_predict.bpc   https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/earth_200101_990628_predict.bpc
+    kernels/naif/unused/pck00011_n0066.tpc         https://naif.jpl.nasa.gov/pub/naif/generic_kernels/pck/pck00011_n0066.tpc
+
+    kernels/naif/de430.bsp                         https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/planets/de430.bsp
+    kernels/naif/ndosl_190716_v02.bsp              https://naif.jpl.nasa.gov/pub/naif/generic_kernels/spk/stations/ndosl_190716_v02.bsp

@@ -1,0 +1,88 @@
+Instrument Kernel for Aspera Notional spacecraft
+
+      \begindata
+
+      TEXT_KERNEL_ID += 'ASPERA_NOTIONAL_INSTRUMENTS V0.0.0 22-MAY-2023 IK'
+
+      NAIF_BODY_NAME += ( 'ASP_SOLAR' )
+      NAIF_BODY_CODE += (    -1999101 )
+
+      NAIF_BODY_NAME += ( 'ASP_S-BAND' )
+      NAIF_BODY_CODE += (     -1999201 )
+
+      NAIF_BODY_NAME += ( 'ASP_SLIT1' )
+      NAIF_BODY_CODE += (   -1999301 )
+
+      NAIF_BODY_NAME += ( 'ASP_SLIT2' )
+      NAIF_BODY_CODE += (   -1999302 )
+
+      \begintext
+
+Solar panel array
+=================
+
+Not a real instrument; model as circular frustum, 50degree cone
+Boresight is -Z axis of the FOV frame
+
+      \begindata
+
+      INS-1999101_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-1999101_FOV_SHAPE            = 'CIRCLE'
+      INS-1999101_FOV_FRAME            = 'ASP_SOLAR'
+      INS-1999101_BORESIGHT            = ( 0.0, 0.0, -1.0 )
+      INS-1999101_FOV_REF_VECTOR       = ( 1.0, 0.0,  0.0 )
+      INS-1999101_FOV_REF_ANGLE        = ( 25.0 )
+      INS-1999101_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      \begintext
+
+S-band antenna
+==============
+
+Assume medium- or low-gain; model as circular frustum, 100degree cone
+Boresight is -Z axis of the FOV frame
+
+      \begindata
+
+      INS-1999201_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-1999201_FOV_SHAPE            = 'CIRCLE'
+      INS-1999201_FOV_FRAME            = 'ASP_S-BAND'
+      INS-1999201_BORESIGHT            = ( 0.0, 0.0, -1.0 )
+      INS-1999201_FOV_REF_VECTOR       = ( 1.0, 0.0,  0.0 )
+      INS-1999201_FOV_REF_ANGLE        = ( 50.0 )
+      INS-1999201_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      \begintext
+
+Two slit instruments
+====================
+
+Model as rectangular frustum with notional angles of 10deg and 0.1deg
+Boresights are -Z axis of the FOV frame
+Long dimension is along frame X axis (S/C Z axis)
+
+      \begindata
+
+      INS-1999301_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-1999301_FOV_SHAPE            = 'RECTANGLE'
+      INS-1999301_FOV_FRAME            = 'ASP_SLIT1'
+      INS-1999301_BORESIGHT            = ( 0.0, 0.0, -1.0 )
+      INS-1999301_FOV_REF_VECTOR       = ( 1.0, 0.0,  0.0 )
+      INS-1999301_FOV_REF_ANGLE        = ( 0.5 )
+      INS-1999301_FOV_CROSS_ANGLE      = ( 0.0041667 )
+      INS-1999301_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      \begintext
+
+      \begindata
+
+      INS-1999302_FOV_CLASS_SPEC       = 'ANGLES'
+      INS-1999302_FOV_SHAPE            = 'RECTANGLE'
+      INS-1999302_FOV_FRAME            = 'ASP_SLIT2'
+      INS-1999302_BORESIGHT            = ( 0.0, 0.0, -1.0 )
+      INS-1999302_FOV_REF_VECTOR       = ( 1.0, 0.0,  0.0 )
+      INS-1999302_FOV_REF_ANGLE        = ( 0.5 )
+      INS-1999302_FOV_CROSS_ANGLE      = ( 0.0041667 )
+      INS-1999302_FOV_ANGLE_UNITS      = ( 'DEGREES' )
+
+      \begintext
