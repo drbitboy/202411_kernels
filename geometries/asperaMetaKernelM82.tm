@@ -7,7 +7,7 @@ KPL/MK
     aspera.00000.draft.tsc      
     aspera_sso_10am.bsp         
     de430.bsp                   
-    naif0012.tls                
+    NAIF0012.TLS                
     pck00011_n0066.tpc  
     asp_v000.tf              
     cdr_3_ck.bc
@@ -29,9 +29,8 @@ KPL/MK
                './geometries/kernels/sclk/aspera.00000.draft.tsc'
                './geometries/kernels/spk/aspera_sso_10am.bsp'
                './geometries/kernels/spk/de430.bsp'   
-               './geometries/kernels/lsk/naif0012.tls'
+               './geometries/kernels/lsk/NAIF0012.TLS'
                './geometries/kernels/pck/pck00011_n0066.tpc'
-               './geometries/kernels/fk/asp_v000.tf'
                './geometries/kernels/ck/cdr_3_ck.bc'
                './geometries/kernels/fk/earth_assoc_itrf93.tf'
                './geometries/kernels/pck/earth200101990628.bpc'
@@ -41,4 +40,7 @@ KPL/MK
                 './geometries/kernels/fk/asp_v00.draftE.tf'
                './geometries/kernels/ik/asp_v00.draftE.ti'
 			   )
-/begintext
+\begintext
+Removed from KERNELS_TO_LOAD by BTCarcich:
+               './geometries/kernels/fk/asp_v000.tf'
+                  - it appears asp_v00.draftE.tf is newer

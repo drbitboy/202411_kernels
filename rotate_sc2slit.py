@@ -3,6 +3,27 @@ from pathlib import Path
 import spiceypy as sp
 import numpy as np
 
+def naifkretrieve(url_suffix=None):
+
+    if url_suffix is None:
+        naifkretrieve(url_suffix="generic_kernels/spk/planets/de430.bsp")
+        naifkretrieve(url_suffix="HST/kernels/spk/hst_edited.bsp")
+        return
+
+    try:
+        bn = os.path.basename(url_suffix)
+        local_path = os.path.join("geometries", bn)
+        assert os.path.exists(local_path)
+    except:
+        url = os.path.join("https://naif.jpl.nasa.gov/pub/naif", bn)
+        import subprocess
+        print(f"Retrieving {bn} from JPL/NAIF ...")
+        cmd = f"curl --progress-bar {url} --output {local_path}"
+        assert not subprocess.run(cmd.split()).returncode
+        print("... retrieval complete")
+    assert os.path.exists(local_path)
+
+
 def main():
     """Rotates S/C vector to boresight vector.
 
@@ -12,15 +33,16 @@ def main():
     Returns:
         None
     """
-
     # Find location of kernel & furnish it
     cwd = Path.cwd()
+
+    naifkretrieve()
 
     rel_path = 'geometries/kernels/ik/asp_v00.draftE.ti'
     ik = os.path.join(cwd, rel_path)
     sp.furnsh(ik)
 
-    rel_path = 'geometries/kernels/lsk/naif0012.tls'
+    rel_path = 'geometries/kernels/lsk/NAIF0012.TLS'
     lsk = os.path.join(cwd, rel_path)
     sp.furnsh(lsk)
 
@@ -62,7 +84,7 @@ def main():
     up_unit_vector = up_vector / up_magnitude
 
     # Time in J2000 frame
-    utc = '2025-06-01T00:00:00'
+    utc = '2025-06-01T00:01:00'
     et = sp.utc2et(utc)
 
     rotation_matrix = sp.pxform('ASP_SLIT1', 'J2000', et)
